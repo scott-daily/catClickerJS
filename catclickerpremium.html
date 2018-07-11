@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Display selected catName, catImage, catCount</title>
+  </head>
+  <body>
+      <ul id="catList"><b>Cat List</b>
+      </ul>
+      <br>
+      <h2>Cat Display Area</h2>
+      <p id ="catName">Cat Name</p>
+      <img id ="catPicture">
+      <p id ="catCounter">Cat Count</p>
+
+<script type="text/javascript">
+
+      var catIndex;
+      var cats = ["tom", "scott", "jasper", "nova", "bean"];
+      var catCount = [0, 0, 0, 0, 0];
+
+      for (var i=0; i<cats.length; i++) {
+          var cat = cats[i];
+          console.log(catIndex);
+          console.log(cat);
+          var ul = document.getElementById("catList");
+          var li = document.createElement('li');
+          li.appendChild(document.createTextNode(cat));
+          ul.appendChild(li);
+
+          li.addEventListener('click', (function(catCopy) {
+              return function() {
+                  alert(catCopy);
+                  document.getElementById("catPicture").src = catCopy + ".jpg";
+                  document.getElementById("catName").innerHTML = catCopy;
+                  var catIndex = cats.indexOf(catCopy);
+                  catCount[catIndex]++;
+                  document.getElementById("catCounter").innerHTML = catCount[catIndex];
+              }
+          })(cat));
+        };
+      
+           
+</script>
+</body>
+</html>
